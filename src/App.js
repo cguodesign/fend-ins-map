@@ -1,18 +1,28 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
+import Card from './Card'
 
 class App extends Component {
+  state = {
+    cards: []
+  }
+
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
+        <header className="header">
+          <h1 className="App-title">NYC Ramen Map</h1>
         </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+        <div class="body">
+          {/* TODO: add the google map here */}
+          <div class="map-container"></div>
+          <div class="card-container">
+            <div class="card-container--inner">
+              <Card cardInfo={this.state.cards} isSelected={false}/>
+            </div>
+          </div>
+        </div>
       </div>
     );
   }
