@@ -48,6 +48,10 @@
   height: calc(400px - 48px);
   overflow-x: scroll;
 }
+.map-container--inner{
+  width: 100%;
+  min-height: 200px;
+}
 
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }

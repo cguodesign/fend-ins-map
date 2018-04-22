@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
-import Card from './Card'
+import Card from './Card';
+import MapContainer from './Mapcontainer';
 
 class App extends Component {
   state = {
@@ -15,8 +16,9 @@ class App extends Component {
           <h1 className="App-title">NYC Ramen Map</h1>
         </header>
         <div class="body">
-          {/* TODO: add the google map here */}
-          <div class="map-container"></div>
+          <div class="map-container">
+            <MapContainer />
+          </div>
           <div class="card-container">
             <div class="card-container--inner">
               <Card cardInfo={this.state.cards} isSelected={false}/>
