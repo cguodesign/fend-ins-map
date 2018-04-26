@@ -4,14 +4,14 @@ import PropTypes from 'prop-types'
 class Card extends Component {
   static propTypes = {
     isSelected: PropTypes.bool.isRequired,
-    cardInfo: PropTypes.object.isRequired
+    cardData: PropTypes.object.isRequired
   }
   render() {
     return (
       <li class='ramen-card'>
-        <div>
-          <h3>
-            Ramen
+        <div class='ramen-card__wrapper'>
+          <h3 class='ramen-card__title'>
+            {this.props.cardData.Name}
           </h3>
           <div class="ramen-card__image--wrapper">
             <div class="ramen-card__image"></div>

@@ -102,7 +102,9 @@ class App extends Component {
           </div>
           <div class="card-container">
             <div class="card-container--inner">
-              <Card cardInfo={this.state.rawData} isSelected={false}/>
+              {this.state.rawData.map(e => {
+                return <Card cardData={e} isSelected={false}/>
+              })}
             </div>
           </div>
         </div>
