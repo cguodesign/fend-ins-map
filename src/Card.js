@@ -20,10 +20,7 @@ class Card extends Component {
   }
 
   handleYelpIDLookup = (address) => {
-    const config = {
-      headers: {'Authorization': }
-    }
-
+    
     const splitAddress = this.props.cardData.Address.split(',')
 
     const address1 = splitAddress[0]

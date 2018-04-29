@@ -8,7 +8,7 @@ from flask import jsonify, request
 app = Flask(__name__)
 CORS(app)
 
-YELP_TOKEN = 'Bearer WToWsPf8PSK9Vdj0g0bRWTLhnIZRsQqyYvWJmpWzWDgQXLJbe_7eaO8S9K-EndVT02ZR5XHCZwwD8BC4OQKOgNUbpXVCYabITWw0Dz0KAZdrTjd2ZYh49ZTsXAviWnYx'
+YELP_TOKEN = 
 
 @app.route('/yelp_business_match')
 def yelp_business_match():
