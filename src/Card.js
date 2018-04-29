@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import PropTypes from 'prop-types'
 import axios from 'axios'
+import Openings from './Openings';
 
 class Card extends Component {
   static propTypes = {
@@ -12,13 +13,15 @@ class Card extends Component {
     super(props);
 
     this.state = {
-      cardInfo: {}
+      cardInfo: {},
+      cardPhotoURL: '',
+      currentSeed: 0
     }
   }
 
   handleYelpIDLookup = (address) => {
     const config = {
-      headers: {'Authorization': "bearer" + "WToWsPf8PSK9Vdj0g0bRWTLhnIZRsQqyYvWJmpWzWDgQXLJbe_7eaO8S9K-EndVT02ZR5XHCZwwD8BC4OQKOgNUbpXVCYabITWw0Dz0KAZdrTjd2ZYh49ZTsXAviWnYx"}
+      headers: {'Authorization': }
     }
 
     const splitAddress = this.props.cardData.Address.split(',')
@@ -38,12 +41,14 @@ class Card extends Component {
             let cardInfo = {
               isOpen: res.data.hours[0].is_open_now,
               thumbnail: res.data.image_url,
-              imageUrl1: res.data.photos[0],
-              imageUrl2: res.data.photos[1],
-              imageUrl3: res.data.photos[2],
+              photos: res.data.photos
+              // [0],
+              // imageUrl2: res.data.photos[1],
+              // imageUrl3: res.data.photos[2],
             }
             this.setState({
-              cardInfo: cardInfo
+              cardInfo: cardInfo,
+              cardPhotoURL: cardInfo.thumbnail
             })
             console.log(this.state.cardInfo);
           })
@@ -60,23 +65,38 @@ class Card extends Component {
     this.handleYelpIDLookup(this.props.cardData.Address);
   }
 
+  handleShuffleImage = () => {
+    let randomSeed = Math.floor(Math.random() * 3);
+    if (this.state.currentSeed === randomSeed) {
+      if (randomSeed === 2) {
+        randomSeed = 0;
+      } else if (randomSeed === 0) {
+        randomSeed = 1;
+      } else {
+        randomSeed = 2;
+      }
+    };
+    this.setState({
+      cardPhotoURL: this.state.cardInfo.photos[randomSeed],
+      currentSeed: randomSeed
+    })
+  }
+
   render() {
     return (
       <li class='ramen-card'>
         <div class='ramen-card__wrapper'>
-          <h3 class='ramen-card__title'>
-            {this.props.cardData.Name}
-          </h3>
-          <div class="ramen-card__image--wrapper">
-            <div class="ramen-card__image">
-              <img src={this.state.cardInfo.thumbnail} alt={this.props.cardData.Name} />
+          <div class='ramen-card__title--wrapper'>
+            <div class='ramen-card__title'>
+              <h3>{this.props.cardData.Name}</h3>
             </div>
+            <Openings isOpening={this.state.cardInfo.isOpen}/>
           </div>
-          <div>
-            <ul>
-              <li>Shuffle Image</li>
-              <li>Lyft there</li>
-            </ul>
+          <div class="ramen-card__image--wrapper">
+            <div class="ramen-card__image" style={{ backgroundImage: `url(${this.state.cardPhotoURL})` }}>
+              {/* <img src={this.state.cardPhotoURL} alt={this.props.cardData.Name} /> */}
+            </div>
+            <button class='ramen-card__button' onClick={this.handleShuffleImage}>Shuffle Image</button>
           </div>
         </div>
       </li>

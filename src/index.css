@@ -1,3 +1,48 @@
+.header {
+  background-color: #222;
+  height: 60px;
+  width: 100%;
+  color: white;
+  top: 0;
+  position: fixed;
+}
+
+.app-title {
+  font-size: 1.5em;
+}
+
+.app-title a{
+  color: #FFFFFF;
+}
+
+.map-container {
+  width: 100%;
+  height: calc(100vh - 500px);
+  position: relative;
+  margin-top: 60px;
+}
+
+.card-container {
+  width: 100%;
+  height: 440px;
+  position: absolute;
+  bottom: 0;
+}
+
+.card-container--inner{
+  margin: 24px;
+  width: calc(100vw - 48px);
+  height: calc(440px - 48px);
+  overflow-x: scroll;
+  white-space: nowrap;
+  overflow-y: visible;
+}
+
+.map-container--inner{
+  width: 100%;
+  min-height: 200px;
+}
+
 body {
   margin: 0;
   padding: 0;
@@ -12,13 +57,81 @@ body {
 
 .ramen-card {
   width: 400px;
-  height: 100%;
-  display: inline-flex;
-  border: 1px solid white;
+  display: inline-block;
+  border: 1px solid #DDD;
+  border-radius: 4px;
+  margin-right: 24px;
+}
+
+.ramen-card:hover{
+  box-shadow: 0 0 4px 0 #333;
 }
 
 .ramen-card__title {
-  text-align: center;
+  text-align: left;
   width: 100%;
   position: relative;
+}
+
+.ramen-card__title--wrapper {
+  height: 60px;
+  width: calc(100% - 48px);
+  padding: 0px 24px;
+  display: inline-flex;
+}
+
+.ramen-card__image {
+  height: 292px;
+  overflow-y: hidden;
+  background-size: cover;
+}
+
+.ramen-card__image--wrapper {
+    display: block;
+    height: 292px;
+}
+
+.ramen-card__image img {
+  width: 100%;
+  height: auto;
+}
+
+.opening__wrapper {
+  width: fit-content;
+  border-radius: 4px;
+  padding: 0px 8px;
+  line-height: 24px;
+  height: 24px;
+  margin: 18px 0px;
+  font-size: 12px;
+  text-transform: uppercase;
+  text-align: right;
+  color: white;
+  font-weight: 400;
+  letter-spacing: 1px;
+}
+
+.opening__wrapper--open {
+  background-color: #00bcd4;
+}
+
+.opening__wrapper--closed {
+  background-color: #e91e63;
+}
+
+.ramen-card__button {
+  bottom: 48px;
+  padding: 8px 16px;
+  position: relative;
+  border-radius: 8px;
+  background: #FFFFFF;
+  border: none;
+  box-shadow: 0 0 4px 0px #000;
+}
+
+.ramen-card__button:hover{
+  box-shadow: 0 0 4px 0px #0045ff;
+  background: #2196F3;
+  color: white;
+  cursor: pointer;
 }
