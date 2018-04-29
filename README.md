@@ -1,12 +1,19 @@
-#Introduction:
-##
+# Introduction:
 
+- About:
+  This is a final project for Udacity's frontend nanodegree program, the apps shows 20 most popular ramen places in NYC, and provides a quick glance at if the ramen place is open via Yelp api.
 
-## Contact:
-Chong Guo, cguo{dot}tju@gmail.com
+- Contact:
+  - Chong Guo, cguo{dot}tju{at}gmail.com
 
+- Opensource Libs Used:
+  - [React and create-react-app](https://reactjs.org/)
+  - [axios](https://github.com/axios/axios)
+  - [google-maps-react](https://github.com/fullstackreact/google-maps-react)
+  - [flask](http://flask.pocoo.org/docs/1.0/installation/#)
+  - [flask_cors](http://flask-cors.readthedocs.io/en/latest/)
 
-#How to run the project:
+# How to run the project:
 
 ## 1. place the dev tokens
 - In /fend-ramen-map-server/app.py, line 11, Add the YELP_TOKEN in the notes.
@@ -31,11 +38,4 @@ Chong Guo, cguo{dot}tju@gmail.com
 ## Troubleshooting:
 - For virtualenv issues, please refer to:
   - [virtualenv install](http://flask.pocoo.org/docs/1.0/installation/#)
-
-
-
-===============
-This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
-
-Below you will find some information on how to perform common tasks.<br>
-You can find the most recent version of this guide [here](https://github.com/facebookincubator/create-react-app/blob/master/packages/react-scripts/template/README.md)
+- This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
