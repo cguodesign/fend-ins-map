@@ -5,21 +5,18 @@ from flask import Flask
 from flask_cors import CORS
 from flask import jsonify, request
 
+# This is a simple backend server to get ride of the CORS restriction from yelp api for the purpose of local development and preview.
 app = Flask(__name__)
 CORS(app)
 
-YELP_TOKEN = 'Bearer WToWsPf8PSK9Vdj0g0bRWTLhnIZRsQqyYvWJmpWzWDgQXLJbe_7eaO8S9K-EndVT02ZR5XHCZwwD8BC4OQKOgNUbpXVCYabITWw0Dz0KAZdrTjd2ZYh49ZTsXAviWnYx'
+YELP_TOKEN = 
 
 @app.route('/yelp_business_match')
 def yelp_business_match():
-    print 'getting yelp business match api'
+    # getting yelp business match api
     address1 = request.args.get('address1')
     name = request.args.get('name')
     city = request.args.get('city')
-
-    print name
-    print address1
-    print city
 
     try:
         r = requests.get(
@@ -33,9 +30,8 @@ def yelp_business_match():
 
 @app.route('/yelp_business_detail')
 def yelp_business_detail():
-    print 'getting yelp business details'
+    # getting yelp business details
     requestUrl = 'https://api.yelp.com/v3/businesses/' + request.args.get('business_id')
-    # requestUrl = 'https://api.yelp.com/v3/businesses/WavvLdfdP6g8aZTtbBQHTw'
     try:
         r = requests.get(
             requestUrl,
