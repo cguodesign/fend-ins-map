@@ -1,68 +1,65 @@
-import React, {Component} from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import {Map, InfoWindow, Marker, GoogleApiWrapper} from 'google-maps-react';
-import axios from 'axios';
+import ramenIcon from './static/images/ramen.png'
 
 export class MapContainer extends React.Component {
   static propTypes = {
-    mapData: PropTypes.array.isRequired
+    mapData: PropTypes.array.isRequired,
+    mapFocus: PropTypes.object.isRequired,
+    zoomLevel: PropTypes.number.isRequired,
+    selectedCardName: PropTypes.string.isRequired,
   }
 
   constructor(props) {
     super(props);
 
     this.state = {
-      ramens: this.props.mapData,
-      "apiKey": "AIzaSyBDI_iT48_yucAzAFmdzUKQ1tVWTomj96M",
       showingInfoWindow: false,
       activeMarker: {},
       selectedPlace: {}
     }
   }
 
-  componentDidMount() {
-    this.handleAddressToGeocoding();
-  }
-
+  // Display the infobox if the marker is clicked
   onMarkerClick = (props, marker, e) => {
-    console.log(props);
-    console.log(marker);
-    console.log(e);
     this.setState({
       selectedPlace: props,
       activeMarker: marker,
-      showingInfoWindow: true
+      showingInfoWindow: true,
     });
-    console.log(this.state.selectedPlace);
-    console.log(this.state.activeMarker);
-  }
-
-  handleAddressToGeocoding = () => {
-    this.state.ramens.map((e, index) => {
-      let output = 'https://maps.googleapis.com/maps/api/geocode/json?address=' + e.Address.split(' ').join('+') + '&key=' + this.state.apiKey;
-      console.log(output);
-      axios.get(output)
-        .then(res => {
-          console.log(res);
-          console.log(res.data.results[0].geometry.location);
-          e.location = res.data.results[0].geometry.location;
-          console.log(e);
-          let newRamens = this.state.ramens.slice()
-          newRamens[index] = e
-          this.setState({
-            ramens: newRamens
-          })
-          console.log(this.state.ramens[index]);
-        })
-    })
   }
 
   render() {
+    const {google} = this.props
     return (
-      <div class="map-container--inner">
-        <Map google={this.props.google} zoom={14} initialCenter={{lat: 40.743596, lng:-73.990271}}>
-          {this.state.ramens.map(e => {
-            return <Marker name={e.Name} address={e.Address} position={e.location} onClick={this.onMarkerClick}/>
+      <div className='map-container--inner'>
+        <Map google={this.props.google} zoom={this.props.zoomLevel} initialCenter={{lat: 40.743596, lng:-73.990271}} center={this.props.mapFocus}>
+          {this.props.mapData.map(e => {
+            let returnMarker
+            // If the marker matches the selected card, use the special ramen icon and add bounce animation
+            e.Name === this.props.selectedCardName
+              ? (
+                returnMarker = <Marker
+                  name={e.Name}
+                  address={e.Address}
+                  position={e.location}
+                  onClick={this.onMarkerClick}
+                  animation={google.maps.Animation.BOUNCE}
+                  icon={{
+                    url: ramenIcon,
+                    anchor: new google.maps.Point(16,16),
+                    scaledSize: new google.maps.Size(32,32)
+                  }}/>
+              ) : (
+                returnMarker = <Marker
+                  name={e.Name}
+                  address={e.Address}
+                  position={e.location}
+                  onClick={this.onMarkerClick}
+                  />
+              )
+            return returnMarker
           })}
           <InfoWindow
           marker={this.state.activeMarker}
@@ -79,5 +76,5 @@ export class MapContainer extends React.Component {
 }
 
 export default GoogleApiWrapper({
-  apiKey: 'AIzaSyBDI_iT48_yucAzAFmdzUKQ1tVWTomj96M'
+  apiKey: ''
 })(MapContainer)

@@ -5,14 +5,73 @@
   color: white;
   top: 0;
   position: fixed;
+  z-index: 1;
+}
+
+.loader {
+  margin-top: 160px;
 }
 
 .app-title {
-  font-size: 1.5em;
+  font-size: 48px;
+  text-align: left;
+  margin-left: 24px;
+  width: 80vw;
 }
 
 .app-title a{
   color: #FFFFFF;
+}
+
+.dropdown {
+  float: right;
+  overflow: hidden;
+  margin-top: -52px;
+  margin-right: 24px;
+  display: block;
+}
+
+.dropdown .dropbtn {
+  cursor: pointer;
+  font-size: 16px;
+  border: none;
+  outline: none;
+  color: white;
+  padding: 14px 16px;
+  background-color: inherit;
+  font-family: inherit;
+  margin: 0;
+}
+
+.dropdown:hover .dropbtn, .dropbtn:focus {
+  background-color: #f9f9f9;
+  color: #000;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown-content button {
+  float: none;
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+}
+
+.dropdown-content a:hover {
+  background-color: #ddd;
+}
+
+.show {
+  display: block;
 }
 
 .map-container {
@@ -30,8 +89,8 @@
 }
 
 .card-container--inner{
-  margin: 24px;
-  width: calc(100vw - 48px);
+  margin: 24px 0px;
+  width: 100vw;
   height: calc(440px - 48px);
   overflow-x: scroll;
   white-space: nowrap;
@@ -63,8 +122,21 @@ body {
   margin-right: 24px;
 }
 
+.ramen-card:first-of-type {
+  margin-left: 24px;
+}
+
 .ramen-card:hover{
-  box-shadow: 0 0 4px 0 #333;
+  box-shadow: 0 4px 8px #aaa;
+  cursor: pointer;
+}
+
+.ramen-card:focus{
+  box-shadow: 0 4px 8px #aaa;
+}
+
+.ramen-card--selected {
+  border: 2px solid #4CAF50;
 }
 
 .ramen-card__title {
@@ -134,4 +206,52 @@ body {
   background: #2196F3;
   color: white;
   cursor: pointer;
+}
+
+@media only screen and (max-width: 375px) {
+  .header {
+    height: 40px;
+  }
+
+  .app-title {
+    font-size: 16px;
+    overflow-y: hidden;
+    width: 60vw;
+    word-wrap: break-word;
+    line-height: 18px;
+    margin: 11px 0 11px 24px;
+  }
+
+  .dropdown {
+    margin-top: -40px;
+    height: 40px;
+  }
+
+  .dropdown .dropbtn{
+    line-height: 24px;
+    padding: 8px 16px;
+    font-size: 14px;
+  }
+
+  .map-container {
+    height: calc(100vh - 456px);
+    margin-top: 40px;
+  }
+
+  .ramen-card{
+    width: 300px;
+  }
+
+  .ramen-card:first-of-type {
+    margin-left: 12px;
+  }
+
+  .card-container--inner {
+    margin: 12px 0px;
+    height: calc(440px - 24px);
+  }
+
+  .card-container {
+    height: 416px;
+  }
 }
